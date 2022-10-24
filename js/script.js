@@ -3,9 +3,9 @@
 //     console.log('links:', links);
 //   });
 
-const titleClickHandler = function(){
+const titleClickHandler = function(event){
     console.log('Link was clicked!');
-    console.log('click', titleClickHandler);
+    console.log(event);
 
   /* remove class 'active' from all article links */
   /* add class 'active' to the clocked link */
@@ -21,3 +21,4 @@ const titleClickHandler = function(){
   for(let link of links){
     link.addEventListener('click', titleClickHandler);
   }
+
