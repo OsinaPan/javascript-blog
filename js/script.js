@@ -55,7 +55,7 @@ const titleClickHandler = function(event){
     clearMessages();
 
     console.log(optTitleListSelector);
-    /* for each article */
+    /* [DONE] for each article */
     const articles = document.querySelector(optArticleSelector);
 
     for(let article of articles){
@@ -66,21 +66,27 @@ const titleClickHandler = function(event){
     let html = '';
 
     for(let article of articles);
-    /* get the article id */
+    /* [DONE] get the article id */
     const articleId = clickedElement.getAttribute('id');
 
     console.log(articleId);
-    /* find the title element */
+    /* [DONE] find the title element */
     const targetArticle = document.querySelector(articleId);
 
     console.log(targetArticle);
+    /* [DONE] get the title from the title element */
+    const articleTitle = article.querySelector(optTitleSelector).innerHTML;
+    /* [DONE] create HTML of the link */
+    //const linkHTML = '<li><a href="#"><span></span></a></li>';                    Informacja dla mnie jak to się rozbudowuje
+    //const linkHTML = '<li><a href="#' + '"><span>' + '</span></a></li>';                      -||-
+    const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
 
-    /* get the title from the title element */
-
-    /* create HTML of the link */
-
-    /* insert link into titleList */
-
+    console.log(linkHTML)
+    /* [IN PROGRESS] insert link into titleList */
+    // titleList.innerHTML = titleList.innerHTML + linkHTML; - to nie
+    html = html + linkHTML;
   }
+  titleList.innerHTML = html;
+}
 
   generateTitleLinks();
