@@ -33,7 +33,7 @@ const titleClickHandler = function(event){
   targetArticle.classList.add('active');
   }
   
-  const links = document.querySelectorAll('.titles a');
+  //const links = document.querySelectorAll('.titles a');
   
   for(let link of links){
     link.addEventListener('click', titleClickHandler);
@@ -48,11 +48,11 @@ const titleClickHandler = function(event){
     /* [DONE] remove contents of titleList */
     const titleList = document.querySelector(optTitleListSelector);
 
-    function clearMessages(){
+    function clearTitleList(){
       document.querySelector(optTitleListSelector).innerHTML = '';
     }
 
-    clearMessages();
+    clearTitleList();
 
     console.log(optTitleListSelector);
     /* [DONE] for each article */
@@ -82,11 +82,12 @@ const titleClickHandler = function(event){
     const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
 
     console.log(linkHTML)
-    /* [IN PROGRESS] insert link into titleList */
-    // titleList.innerHTML = titleList.innerHTML + linkHTML; - to nie
+    /* [DONE] insert link into titleList */
     html = html + linkHTML;
   }
   titleList.innerHTML = html;
 }
 
   generateTitleLinks();
+
+  const links = document.querySelectorAll('.titles a');
