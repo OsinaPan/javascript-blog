@@ -32,7 +32,7 @@ const titleClickHandler = function (event) {
   console.log(targetArticle);
   /* [DONE] add class 'article' to the correct article */
   targetArticle.classList.add('active');
-}
+};
 
 function generateTitleLinks() {
 
@@ -55,7 +55,7 @@ function generateTitleLinks() {
     /* [DONE] create HTML of the link */
     const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
 
-    console.log(linkHTML)
+    console.log(linkHTML);
     /* [DONE] insert link into titleList */
     html = html + linkHTML;
   }
