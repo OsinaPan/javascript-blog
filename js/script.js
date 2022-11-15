@@ -95,13 +95,13 @@ function generateTags(){
       const linkHTML = '<ul>' + articleTags + '</ul>';
       console.log(linkHTML);
       /* [DONE] add generated code to html variable */
-      let html = '';
+      let html = html + linkHTML;
       console.log(html);
-    /* [DONE?] END LOOP: for each tag */
+    /* [DONE] END LOOP: for each tag */
     }
-    /* insert HTML of all the links into the tags wrapper */
-    
-    /* [DONE?] END LOOP: for every article: */
+    /* [DONE] insert HTML of all the links into the tags wrapper */
+    titleList.innerHTML = html;
+    /* [DONE] END LOOP: for every article: */
   }
 }
 generateTags();
