@@ -175,12 +175,12 @@ function generateAuthors(){
     const linkHTML = '<p>' + articleAuthor + '</p>';
     console.log(linkHTML);
     /* add generated code to html variable */
-    let html = html + linkHTML;
+    html = html + linkHTML;
     console.log(html);
     /* END LOOP: for each tag */
   }
-    /* insert HTML of all the links into the tags wrapper */
-    titleList.innerHTML = html;
+  /* insert HTML of all the links into the Author wrapper */
+  titleList.innerHTML = html;
   /* END LOOP: for every article: */
-  }
+}
 generateAuthors();
