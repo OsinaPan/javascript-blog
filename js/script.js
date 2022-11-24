@@ -3,7 +3,7 @@ const optArticleSelector = '.post',
   optTitleListSelector = '.titles',
   optArticleTagsSelector = '.post-tags .list',
   optArticleAuthorSelector = '.post-author',
-  optTagsListSelector = 'tags .list';
+  optTagsListSelector = '.tags.list';
 
 const titleClickHandler = function (event) {
 
@@ -69,13 +69,13 @@ function generateTitleLinks() {
 
 generateTitleLinks();
 
-const calculateTagsParams = function(tags){
+const calculateTagsParams = function (tags) {
   const params = {
     max: 0,
     min: 999999,
   };
 
-  for(let tag in tags){
+  for (let tag in tags) {
     params.max = Math.max(tags[tag], params.max);
     params.min = Math.min(tags[tag], params.min);
 
@@ -85,7 +85,7 @@ const calculateTagsParams = function(tags){
   return params;
 };
 
-function generateTags(){
+function generateTags() {
   /* [NEW DONE] create a new variable allTags with an empty object */
   let allTags = {};
   /* [DONE] find all articles */
@@ -93,38 +93,32 @@ function generateTags(){
   console.log('articles', articles);
   /* START LOOP: for every article: */
   for (let article of articles) {
-  /* [DONE] find tags wrapper */
+    /* [DONE] find tags wrapper */
     const titleList = article.querySelector(optArticleTagsSelector);
     console.log(titleList);
     /* [DONE] make html variable with empty string */
     let html = '';
     console.log(html);
     /* [DONE] get tags from data-tags attribute */
-    const articleSelector = article.getAttribute('data-tags');
-    console.log(articleSelector);
-
-    const articleTags = 'data-tags';
-    console.log(articleTags);
+    const tagsString = article.getAttribute('data-tags'); //"cat sport test"
     /* [DONE] split tags into array */
-    const articleTagsArray = articleTags.split(' ');
-    console.log(articleTagsArray);
+    const articleTagsArray = tagsString.split(' '); //"cat sport test" -> ["cat", "sport", "test"]
     /* [DONE] START LOOP: for each tag */
-    for(let tag of articleTagsArray){
-      console.log(tag);
+    for (let tag of articleTagsArray) {
       /* [DONE] generate HTML of the link */
-      const linkHTML = '<ul>' + articleTags + '</ul>';
+      const linkHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
       console.log(linkHTML);
       /* [DONE] add generated code to html variable */
-      let html = html + linkHTML;
+      html = html + linkHTML;
       console.log(html);
       /* [NEW DONE] check if this link is NOT already in allTags */
-      if(!allTags[tag]){
+      if (!allTags[tag]) {
         /* [NEW DONE] add tag to allTags object */
         allTags[tag] = 1;
       } else {
         allTags[tag]++;
       }
-    /* [DONE] END LOOP: for each tag */
+      /* [DONE] END LOOP: for each tag */
     }
     /* [DONE] insert HTML of all the links into the tags wrapper */
     titleList.innerHTML = html;
@@ -139,9 +133,9 @@ function generateTags(){
 
   let allTagsHTML = '';
   /* [NEW] START LOOP: for each tag in allTags: */
-  for(let tag in allTags){
-  /* [NEW] generate code of a link and add it to allTagsHTML */
-    allTagsHTML += tag + ' (' + allTags[tag] + ') ';
+  for (let tag in allTags) {
+    /* [NEW] generate code of a link and add it to allTagsHTML */
+    allTagsHTML += '<li><a href="#tag-' + tag + '">' + tag + '(' + allTags[tag] + ')</a></li>';
   }
   /* [NEW] END LOOP: for each tag in allTags: */
 
@@ -151,7 +145,7 @@ function generateTags(){
 }
 generateTags();
 
-function tagClickHandler(event){
+function tagClickHandler(event) {
   /* [DONE] prevent default action for this event */
   event.preventDefault();
   console.log(event);
@@ -167,43 +161,43 @@ function tagClickHandler(event){
   const activeTags = document.querySelectorAll('a.active[href^="#tag-"]');
   console.log(activeTags);
   /* [DONE] START LOOP: for each active tag link */
-  for(let activeTag of activeTags){
-  /* [DONE] remove class active */
+  for (let activeTag of activeTags) {
+    /* [DONE] remove class active */
     activeTag.classList.remove('active');
-  /* [DONE] END LOOP: for each active tag link */
+    /* [DONE] END LOOP: for each active tag link */
   }
   /* [DONE] find all tag links with "href" attribute equal to the "href" constant */
   const tagLinks = document.querySelectorAll('a[href="' + href + '"]');
   console.log(tagLinks);
   /* [DONE] START LOOP: for each found tag link */
-  for(let tagLink of tagLinks) {
-  /* [DONE] add class active */
+  for (let tagLink of tagLinks) {
+    /* [DONE] add class active */
     tagLink.classList.add('active');
-  /* [DONE] END LOOP: for each found tag link */
+    /* [DONE] END LOOP: for each found tag link */
   }
   /* [DONE] execute function "generateTitleLinks" with article selector as argument */
   generateTitleLinks('[data-tags~="' + tag + '"]');
 }
 
-function addClickListenersToTags(){
+function addClickListenersToTags() {
   /* [DONE] find all links to tags */
   const tagLinks = document.querySelectorAll('a[href^="#tag-"]');
   /* [DONE] START LOOP: for each link */
-  for(let tagLink of tagLinks){
-  /* [DONE] add tagClickHandler as event listener for that link */
+  for (let tagLink of tagLinks) {
+    /* [DONE] add tagClickHandler as event listener for that link */
     tagLink.addEventListener('click', tagClickHandler);
-  /* [DONE] END LOOP: for each link */
+    /* [DONE] END LOOP: for each link */
   }
 }
 addClickListenersToTags();
 
-function generateAuthors(){
+function generateAuthors() {
   /* [DONE] find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
   console.log(articles);
   /* [DONE] START LOOP: for every article: */
-  for(let article of articles){
-  /* [DONE] find Author wrapper */
+  for (let article of articles) {
+    /* [DONE] find Author wrapper */
     const authorWrapper = article.querySelector(optArticleAuthorSelector);
     console.log(authorWrapper);
     /* [DONE] make html variable with empty string */
@@ -222,7 +216,7 @@ function generateAuthors(){
     authorWrapper.innerHTML = html;
     /* [DONE] END LOOP: for each tag */
   }
-  
+
   /* [DONE] END LOOP: for every article: */
 }
 generateAuthors();
