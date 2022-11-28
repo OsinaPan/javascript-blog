@@ -144,22 +144,17 @@ function generateTags() {
   const tagsParams = calculateTagsParams(allTags);
   console.log('tagsParams:', tagsParams);
 
-  const allTagsData = { tags: [] };
+  let allTagsHTML = '';
   /* [NEW] START LOOP: for each tag in allTags: */
   for (let tag in allTags) {
     /* [NEW] generate code of a link and add it to allTagsHTML */
-    allTagsData.tags.push({
-      tag: tag,
-      count: allTags[tag],
-      className: calculateTagsClass(allTags[tag], tagsParams),
-    });
-    /* [NEW] END LOOP: for each tag in allTags: */
-  }
+    
+  /* [NEW] END LOOP: for each tag in allTags: */
+  
   /*[NEW] add HTML from allTagsHTML to tagList */
   tagList.innerHTML = allTagsHTML;
   console.log(allTags);
 }
-
 generateTags();
 
 function tagClickHandler(event) {
