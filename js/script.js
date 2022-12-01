@@ -89,7 +89,7 @@ const calculateTagsParams = function (tags) {
 
 
 
-const calculateTagsClass = function(count, params){
+const calculateTagsClass = function (count, params) {
   const normalizedCount = count - params.min;
   const normalizedMax = params.max - params.min;
   const percentage = normalizedCount / normalizedMax;
@@ -148,12 +148,12 @@ function generateTags() {
   /* [NEW] START LOOP: for each tag in allTags: */
   for (let tag in allTags) {
     /* [NEW] generate code of a link and add it to allTagsHTML */
-    
-  /* [NEW] END LOOP: for each tag in allTags: */
-  
+    const linkHTML = '<li><a href="#tag-' + tag + '" class="' + calculateTagsClass(allTags[tag], tagsParams) + '">' + tag + '</a></li>';
+    /* [NEW] END LOOP: for each tag in allTags: */
+    allTagsHTML += linkHTML;
+  }
   /*[NEW] add HTML from allTagsHTML to tagList */
   tagList.innerHTML = allTagsHTML;
-  console.log(allTags);
 }
 generateTags();
 
