@@ -264,8 +264,8 @@
   <script id="template-article-link" type="text/x-handlebars-template">
     <li><a href="#{{ id }}"><span>{{ title }}</span></a></li>
   </script>
-  <script id="template-tag-cloud-link" type="text/x-handlebars-template">
-    <li><a href="#{{ id }}"><span>{{ tag }}</span></a></li>
+  <script id="template-tag-link" type="text/x-handlebars-template">
+    <li><a href="#tag{{ tag }}"><span>{{ tag }}</span></a></li>
   </script>
   <script id="template-cloud-tags" type="text/x-handlebars-template">
     {{#each tags}} 
