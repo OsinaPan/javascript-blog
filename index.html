@@ -262,10 +262,15 @@
     </div>
   </div>
   <script id="template-article-link" type="text/x-handlebars-template">
-    <li><a href="#{{ id }}"><span>{{ Przykład tekstu numer 1 }}</span></a></li>
+    <li><a href="#{{ id }}"><span>{{ title }}</span></a></li>
   </script>
   <script id="template-tag-cloud-link" type="text/x-handlebars-template">
-    <li><a href="#{{ id }}"><span>{{ Przykład tekstu numer 2 }}</span></a></li>
+    <li><a href="#{{ id }}"><span>{{ tag }}</span></a></li>
+  </script>
+  <script id="template-cloud-tags" type="text/x-handlebars-template">
+    {{#each tags}} 
+      <li><a href="#tag-{{ tag }}" class="{{ className }}"><span>{{ tag }}</span></a></li>
+    {{/each}}
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
   <script src="js/script.js"></script>
