@@ -1,7 +1,9 @@
 const templates = {
   articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
   tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
-  tagsCloud: Handlebars.compile(document.querySelector('#template-cloud-tags').innerHTML)
+  tagsCloud: Handlebars.compile(document.querySelector('#template-cloud-tags').innerHTML),
+  authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
+  authorListLink: Handlebars.compile(document.querySelector('#template-authors-list-link').innerHTML)
 };
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
@@ -228,16 +230,14 @@ function generateAuthors() {
     console.log(authorWrapper);
     /* [DONE] make html variable with empty string */
     let html = '';
-    console.log(html);
     /* [DONE] get Author from data-author attribute */
     const articleAuthor = article.getAttribute('data-author');
     console.log(articleAuthor);
     /* [DONE] generate HTML of the link */
-    const linkHTML = '<a href="#author-' + articleAuthor + '">' + articleAuthor + '</a></li>';
-    console.log(linkHTML);
+    const authorHTMLData = { author: articleAuthor };
+    const authorHTML = templates.authorListLink(authorHTMLData);
     /* [DONE] add generated code to html variable */
-    html = html + linkHTML;
-    console.log(html);
+    html += authorHTML;
 
     if (!allAuthors[articleAuthor]) {
       /* [NEW DONE] add authors to allAuthors object */
@@ -248,16 +248,18 @@ function generateAuthors() {
   }
   /* [NEW] find list of authors in right column */
   const authorsList = document.querySelector(optAuthorsListSelector);
-  let allAuthorsHTML = '';
+  const allAuthorsData = { allAuthors: [] };
   /* [NEW] START LOOP: for each tag in allAuthors */
   for (let author in allAuthors) {
     /* [NEW] generate code of a link and add it to allAuthorsData  */
-    const linkHTML = '<li><a href="#author-' + author + '">' + author + '</a></li>';
+    allAuthorsData.allAuthors.push({
+      author: author,
+      count: allAuthors[author],
+    });
     /* [NEW] END LOOP: for each tag in allAuthors: */
-    allAuthorsHTML += linkHTML;
   }
   /* [NEW] add HTML from allAuthorsHTML to AuthorsList */
-  authorsList.innerHTML = allAuthorsHTML;
+  authorsList.innerHTML = templates.authorListLink(allAuthorsData);
 }
 
 generateAuthors();
