@@ -222,30 +222,31 @@ function generateAuthors() {
     const articleAuthor = article.getAttribute('data-author');
     console.log(articleAuthor);
     /* [DONE] generate HTML of the link */
-    const linkHTML = '<p>' + articleAuthor + '</p>';
+    const linkHTML = '<a href="#author-' + articleAuthor + '">' + articleAuthor + '</a></li>';
     console.log(linkHTML);
     /* [DONE] add generated code to html variable */
     html = html + linkHTML;
     console.log(html);
 
+    if (!allAuthors[articleAuthor]) {
+      /* [NEW DONE] add authors to allAuthors object */
+      allAuthors[articleAuthor] = true;
+    }
     authorWrapper.innerHTML = html;
     /* [DONE] END LOOP: for every article: */
   }
   /* [NEW] find list of authors in right column */
   const authorsList = document.querySelector(optAuthorsListSelector);
-  /* [NEW] creat variable for all links HTML code */
-  const allAuthorsData = { allAuthors: [] };
+  let allAuthorsHTML = '';
   /* [NEW] START LOOP: for each tag in allAuthors */
   for (let author in allAuthors) {
     /* [NEW] generate code of a link and add it to allAuthorsData  */
-    allAuthorsData.allAuthors.push({
-      author: author,
-      count: allAuthors[author],
-    });
+    const linkHTML = '<li><a href="#author-' + author + '">' + author + '</a></li>';
     /* [NEW] END LOOP: for each tag in allAuthors: */
+    allAuthorsHTML += linkHTML;
   }
   /* [NEW] add HTML from allAuthorsHTML to AuthorsList */
-  authorsList.innerHTML = allAuthors;
+  authorsList.innerHTML = allAuthorsHTML;
 }
 
 generateAuthors();
